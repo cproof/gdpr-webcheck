@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="de-DE">
+<head>
+
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="author" content="SemiColonWeb" />
+
+	<!-- Stylesheets
+	============================================= -->
+	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<!-- Document Title
+	============================================= -->
+	<title>@TODO: Namensfindung</title>
+
+	<style>
+
+
+		@font-face {
+			font-family: 'Lato';
+			src: url('css/fonts/lato/LatoLatin-Regular.eot'); /* IE9 Compat Modes */
+			src: url('css/fonts/lato/LatoLatin-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+			url('css/fonts/lato/LatoLatin-Regular.woff2') format('woff2'), /* Modern Browsers */
+			url('css/fonts/lato/LatoLatin-Regular.woff') format('woff'), /* Modern Browsers */
+			url('css/fonts/lato/LatoLatin-Regular.ttf') format('truetype');
+			font-style: normal;
+			font-weight: 400;
+			text-rendering: optimizeLegibility;
+		}
+
+		@font-face {
+			font-family: 'Lato';
+			src: url('css/fonts/lato/LatoLatin-Light.eot'); /* IE9 Compat Modes */
+			src: url('css/fonts/lato/LatoLatin-Light.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+			url('css/fonts/lato/LatoLatin-Light.woff2') format('woff2'), /* Modern Browsers */
+			url('css/fonts/lato/LatoLatin-Light.woff') format('woff'), /* Modern Browsers */
+			url('css/fonts/lato/LatoLatin-Light.ttf') format('truetype');
+			font-style: normal;
+			font-weight: 300;
+			text-rendering: optimizeLegibility;
+		}
+
+		body {
+			font-size: 15.5px;
+		}
+
+        .content-wrap {
+            position: relative;
+            padding: 80px 0;
+        }
+
+        .topmargin-lg { margin-top: 80px !important; }
+
+        .bottommargin-lg { margin-bottom: 80px !important; }
+
+        .topmargin-sm { margin-top: 30px !important; }
+
+        a {
+            text-decoration: none !important;
+            color: #1ABC9C;
+        }
+
+        a:hover {
+            color: #111;
+        }
+
+        .color {
+            color: #1ABC9C !important;
+        }
+
+        p.lead span {
+            color: #1ABC9C !important;
+        }
+
+        #footer {
+            position: relative;
+            background-color: #EEE;
+        }
+
+        #copyrights {
+            padding: 40px 0;
+            background-color: #DDD;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .copyright-links a {
+            display: inline-block;
+            margin: 0 3px;
+            color: #333;
+            border-bottom: 1px dotted #444;
+        }
+
+        @media (max-width: 768px) {
+            .col-xs-12.text-right, .col-xs-12.text-left {
+                text-align: center;
+            }
+        }
+
+        blockquote {
+            text-align: justify;
+        }
+
+
+	</style>
+
+</head>
+
+<body class="stretched">
+
+	<!-- Document Wrapper
+	============================================= -->
+	<div id="wrapper" class="clearfix">
+
+
+
+		<!-- Content
+		============================================= -->
+		<section id="content">
+
+			<div class="content-wrap">
+
+				<div class="container clearfix">
+                    <div class="row">
+
+						<div id="section-home"
+							 class="heading-block title-center nobottomborder page-section text-center col-sm-8 col-sm-offset-2">
+							<h1 class="text-uppercase">Konform mit der DSGVO?</h1>
+
+							<p class="lead">
+								Verschaffen Sie sich mit einem Klick eine Übersicht darüber,
+								durch welche <span class="color">Drittanbieter</span>
+								die <span class="color">IP-Adressen</span> Ihrer Besucher
+								<span class="color">ungefragt</span> verarbeitet werden.
+							</p>
+
+						</div>
+					</div>
+					<div class="row">
+
+						<div class="center bottommargin">
+							<div class="clearfix">
+								<form id="widget-subscribe-form" role="form" method="post" class="nobottommargin"
+									  onsubmit="return formSubmit()">
+									<div class="form-group-lg">
+
+										<div class="col-sm-5 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+											<div class="input-group">
+												<span class="input-group-addon"><span
+														class="glyphicon glyphicon-globe"></span></span>
+												<input name="widget-subscribe-form-email" id="website"
+													   class="form-control required email"
+													   placeholder="www.ihre-domain.at" aria-required="true"
+													   type="text">
+											</div>
+										</div>
+
+										<div class="col-sm-3 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+											<button class="button button-green btn btn-success button-rounded  nomargin form-control"
+													id="submitbutton" type="submit">Überprüfen
+											</button>
+										</div>
+									</div>
+
+								</form>
+							</div>
+							<div class="row">
+
+								<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+									<div id="panic" style="display:none">
+										<h4 class="topmargin-sm nobottommargin text-center"><strong>Diese Hosts
+											verarbeiten IP-Adressen Ihrer
+											Besucher:</strong></h4>
+										<ul class="list-group" id="website-target">
+
+										</ul>
+										<div class="alert alert-info">
+											<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+												×
+											</button>
+											<i class="icon-info"></i><strong>Hinweis:</strong> Dieser Dienst kann und
+											soll eine
+											individuelle Rechtsberatung nicht ersetzen.
+										</div>
+									</div>
+									<ul class="list-group topmargin-sm " id="website-fetching" style="display:none">
+										<li class='list-group-item'>Abfrage läuft...
+											<div class="progress progress-striped active nobottommargin">
+												<div class="progress-bar progress-bar-success " role="progressbar"
+													 id="progress-bar" aria-valuenow="0" aria-valuemin="0"
+													 aria-valuemax="100" style="width: 0%">
+												</div>
+											</div>
+										</li>
+									</ul>
+
+								</div>
+							</div>
+                    </div>
+					</div>
+
+					<div class="clearfix"></div>
+
+					<div class="divider divider-short divider-center"><i class="icon-circle"></i></div>
+
+					<div id="section-features1" class="heading-block title-center page-section page-header topmargin-lg">
+						<h2>Hintergrund&shy;informationen</h2>
+						<span>Was wird überprüft? Welche Schlüsse lassen sich ziehen?</span>
+					</div>
+
+					<div class="">
+
+						<h3>Wieso diese Überprüfung?</h3>
+						<p>
+							IP-Adressen sind nach der Datenschutz-Grundverordnung als personenbezogene Daten einzustufen, für deren Verarbeitung ein
+							Rechtsgrund, wie etwa eine Einwilligung der Betroffenen vorliegen muss.<br/>
+							Insbesondere für die Verarbeitung durch Dritte,
+							mit denen kein <a href="https://www.wko.at/service/wirtschaftsrecht-gewerberecht/eu-dsgvo-mustervertrag-auftragsverarbeitung.html">Vertrag zur Auftragsverarbeitung</a>
+							vorliegt, sollte deshalb eine Einwilligung von Besuchern eingeholt werden.
+						</p>
+
+						<h3>Technischer Ablauf</h3>
+						<p>
+							Wir rufen die von Ihnen angegebene Seite auf und protokollieren mit,
+							Elemente welcher verschiedenen Hosts im Zuge des erstmaligen Aufrufs angefordert werden.
+							Dadurch wird das Erlebnis eines Besuchers nachgestellt, der die Website zum
+							ersten Mal aufruft, und deshalb noch nicht die Gelegenheit hatte, über den
+							geltenden Datenschutz informiert zu werden und gegebenenfalls einer
+							Datenschutzerklärung zuzustimmen.
+						</p>
+
+						<h3>Rechtsgrundlagen</h3>
+						<blockquote>
+							<p>
+								Natürlichen  Personen  werden  unter  Umständen  <span class="color">Online-Kennungen  wie  IP-Adressen </span> und  Cookie-Kennungen,  die
+								sein  Gerät  oder  Software-Anwendungen  und  -Tools  oder  Protokolle  liefern,  oder  sonstige  Kennungen  wie
+								Funkfrequenzkennzeichnungen  zugeordnet.  <span class="color">Dies  kann  Spuren  hinterlassen</span>,  die  insbesondere  in  Kombination  mit
+								eindeutigen  Kennungen  und  anderen  beim  Server  eingehenden  Informationen  dazu  benutzt  werden  können,  um
+								Profile der <span class="color">natürlichen Personen</span> zu erstellen und sie zu <span class="color">identifizieren</span>.
+							</p>
+							<footer>
+								Erwägungsgrund 30 der Datenschutz-Grundverordnung
+							</footer>
+						</blockquote>
+
+						<blockquote>
+							<p>
+								Im Sinne dieser Verordnung bezeichnet der Ausdruck <i>[...]</i>  <span class="color">„personenbezogene  Daten“</span>  alle  Informationen,  die  sich auf eine  identifizierte oder  <span class="color">identifizierbare  natürliche Person</span>
+								(im  Folgenden  „betroffene  Person“)  beziehen;  als  identifizierbar  wird  eine  natürliche  Person  angesehen,  die  direkt
+								oder  indirekt,  <span class="color">insbesondere</span>  mittels  Zuordnung  zu  einer  Kennung  wie  einem  Namen,  zu  einer  Kennnummer,  zu
+								Standortdaten,  zu  einer  <span class="color">Online-Kennung</span>  oder  zu  einem  oder  mehreren  besonderen  Merkmalen,  die  Ausdruck  der
+								physischen,  physiologischen,  genetischen,  psychischen,  wirtschaftlichen,  kulturellen  oder  sozialen  Identität  dieser
+								natürlichen Person sind, identifiziert werden kann;
+							</p>
+							<footer>
+								Artikel 1 Ziffer 1 der Datenschutz-Grundverordnung
+							</footer>
+						</blockquote>
+
+
+						<blockquote>
+							<p>
+								Personenbezogene Daten müssen <i>[...]</i> auf  <span class="color">rechtmäßige  Weise</span>,  nach  Treu  und  Glauben
+								und  in  einer  <span class="color">für  die  betroffene  Person  nachvollziehbaren</span>  Weise
+								verarbeitet werden („Rechtmäßigkeit, Verarbeitung nach Treu und Glauben, Transparenz“);
+							</p>
+							<footer>
+								Artikel 5 Absatz 1 Ziffer 1 der Datenschutz-Grundverordnung
+							</footer>
+						</blockquote>
+
+						<blockquote>
+							<p>
+								Die Verarbeitung ist nur rechtmäßig, wenn mindestens eine der nachstehenden Bedingungen erfüllt ist: <i>[...]</i><br/>
+								Die  betroffene  Person  hat  ihre  <span class="color">Einwilligung  zu  der  Verarbeitung</span> der  sie  betreffenden  personenbezogenen  Daten  für
+								einen oder mehrere bestimmte Zwecke gegeben;
+							</p>
+							<footer>
+								Artikel 6 Absatz 1 der Datenschutz-Grundverordnung
+							</footer>
+						</blockquote>
+
+
+					</div>
+				</div>
+			</div>
+
+
+		</section>
+		<!-- Footer
+            ============================================= -->
+		<footer id="footer" class="noborder">
+
+
+			<!-- Copyrights
+            ============================================= -->
+			<div id="copyrights">
+
+				<div class="container clearfix">
+                    <div class="row">
+
+					<div class="col_half copyright-links col-sm-6 col-xs-12 text-left">
+                        <a href="#impressum"  data-toggle="modal" data-target=".impressum">Impressum / Datenschutz</a>
+
+					</div>
+
+					<div class="col_half col_last tright col-sm-6 text-right hidden-xs">
+
+						<div class="clear"></div>
+                        Copyright &copy; 2018 Thomas Schreiber
+
+					</div>
+                    </div>
+
+				</div>
+
+			</div><!-- #copyrights end -->
+
+		</footer><!-- #footer end -->
+
+		<div class="modal fade impressum" tabindex="-1" role="dialog" aria-labelledby="impressumLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-body">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h4 class="modal-title" id="impressumLabel">Impressum</h4>
+						</div>
+						<div class="modal-body">
+							<div>
+								<h4>Medieninhaber gem. §&nbsp;24 Mediengesetz</h4>
+								<p><strong>Dipl.-Ing. Thomas Schreiber, LL.M. (WU)</strong><br />
+									IT-Services<br />
+									Liechtensteinstraße 11<br />
+									2170 Poysdorf<br />
+									Österreich</p>
+								<p>
+									<a href="mailto:thomas@outlook.at">Mail: thomas@outlook.at</a><br />
+								</p>
+							</div>
+							<div>
+								<h4>Datenschutzbestimmungen</h4>
+								<p>Für die Erbringung des Dienstes wird Ihre IP-Adresse flüchtig verarbeitet.<br/>
+									Für Zwecke der Dienste-Weiterentwicklung zeichnen wir anonymisierte Abfragen auf.<br/>
+								Für das Webhosting bedienen wir uns Auftragsverarbeiter.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div><!-- #wrapper end -->
+
+
+	<!-- External JavaScripts
+	============================================= -->
+	<script type="text/javascript" src="js/jquery.js"></script>
+
+
+	<!-- Footer Scripts
+	============================================= -->
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+
+
+
+	<script type="application/javascript">
+        var host = "https://gdpr.getlaw.eu"; //host for github pages
+        if (document.URL.indexOf("localhost") !== -1) {
+            host = ""; //same host
+		}
+
+
+		//get estimated progress in % for seconds started
+		var getProgress = function(secondsPassed) {
+            return (secondsPassed / (secondsPassed + 10));
+		};
+
+
+        function formSubmit(e) {
+            var website = $("#website").val();
+            $("#website-target").empty();
+            $("#panic").hide();
+            $("#submitbutton").attr("disabled","disabled");
+
+            $("#website-fetching").show();
+
+            var started = (new Date()).getTime();
+
+            var timer = window.setInterval(function() {
+                var secondsPassed = ((new Date()).getTime() - started)/1000;
+                var progress = getProgress(secondsPassed);
+                $("#progress-bar").attr("aria-valuenow", (progress * 100));
+                $("#progress-bar").css("width", (progress * 100) + "%");
+			}, 500);
+
+            $.get(host + "/lookup", {
+                domain: website
+            }, function (data) {
+                $("#panic").show();
+                $("#website-target").empty();
+                //success
+                $.each(data.hosts, function (i, val) {
+                    var entry = "<li class=\"list-group-item\"><a target='_blank' href='http://" + val + "'>" + val + "</a></li>";
+                    $("#website-target").append(entry);
+                })
+            }).fail(function (error) {
+                $("#website-target").html("<li class='list-group-item'>Domain konnte nicht überprüft werden.</li>");
+
+            })
+                .always(function () {
+                    $("#website-fetching").hide();
+                    $("#progress-bar").css("width", "0%");
+                    $("#submitbutton").removeAttr("disabled");
+                    window.clearInterval(timer);
+                });
+            return false;
+		}
+
+	</script>
+</body>
+</html>
