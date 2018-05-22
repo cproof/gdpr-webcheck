@@ -1,7 +1,7 @@
 GDPR-Webcheck
 =============
 
-> Perform a basic check for potential GDPR problems with Websites
+> Perform a basic check for potential GDPR problems with websites
 
 Performed checks
 ----------------
@@ -19,5 +19,6 @@ Prerequisites
 How to run
 ----------
 
-1. Modify the paths in `application.properties` according to your system.
-2. Start the system with maven: `mvn spring-boot:run`
+1. Modify the paths in `application.properties` according to your system configuration
+2. Start the application with maven: `mvn spring-boot:run`
+3. Access `http://localhost:8090` with your webbrowser
